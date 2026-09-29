@@ -11,8 +11,7 @@
 ##Variables
 - questionIndex : checks which question we are on
 - difficultyIndex: checks which difficulty we are on
-- currentQuestion: the current question in the program
-- currentPrompts: The prompted answers for the question
+- currentObj - the current object selected within an array
 - score: 1 is added every time user selects correct answer
 - currentMoney: stores what amount of money the user currently has
 - moneyWon: how much the user wins when the quiz ends
