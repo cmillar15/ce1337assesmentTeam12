@@ -2,9 +2,13 @@ const prompt = require("readline-sync")
 
 function Nameandstart(){
 
-let name = prompt.question("What is your team name: ")
+console.log("Welcome to Who Wants to be a Millionaire Team 12 edition. Im Jeremy Clarkson and Ill be your host for the game.")
 
-console.log(name, "Get ready to begin the quiz")
+let name = prompt.question("To begin, what is your name: ")
+
+prompt.question("Tell us a bit about yourself.")
+console.log("Thats brilliant, " + name + "Im your host Jeremy CLarkson and we will now begin the quiz.")
+
 return name;
 }
 
