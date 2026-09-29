@@ -19,7 +19,7 @@
 - answerCorrect: True/False, is set to true when user gets correct answer
 - lifelineChoice: what lifeline they use
 - halvesAvailable: if they have 50/50 lifeline 
-- skipAvailable:if they habe skips avaiable
+- skipAvailable: if they have skips available
 - safetynetAvailable: if they have safety net lifeline
 - name: their team name
   
