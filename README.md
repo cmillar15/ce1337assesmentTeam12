@@ -21,3 +21,4 @@
 - halvesAvailable: if they have 50/50 lifeline 
 - skipAvailable:if they habe skips avaiable
 - safetynetAvailable: if they have safety net lifeline
+- name: their team name
