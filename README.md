@@ -17,4 +17,4 @@
 - currentMoney: stores what amount of money the user currently has
 - moneyWon: how much the user wins when the quiz ends
 - moneyAmmounts: Array that shows all the money ammounts
-- 
+- answerCorrect: True/False, is set to true when user gets correct answer
