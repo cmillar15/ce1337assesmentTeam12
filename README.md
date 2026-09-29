@@ -4,8 +4,8 @@
 ##Functions
 - AskQuestion : selects the next question to be asked, when used inside a loop for the question
 - setScore: checks if answerCorrect is True and then adds 1 to score and sets how much money they are on
-- safetyNet: sets the safety net when the user reaches £1,000 and again at £32,000
--
+- setCheckpoint: sets the checkpoint when the user reaches £1,000 and again at £32,000
+- safetyNet: uses the safety net lifeline
 -
 
 ##Variables
