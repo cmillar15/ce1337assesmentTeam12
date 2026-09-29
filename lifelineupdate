@@ -1,0 +1,36 @@
+const prompt = require("readline-sync")
+
+
+let halvesAvailable = true
+let safetynetAvaiable = true
+let skipAvailable = true
+
+let lifelineChoice
+
+
+answer = ""
+prompt.question("question?")
+
+if (answer = "L"){
+    lifelineChoice = prompt.question("What lifeline would you like to use: \nA: 50/50 \nB: Safety Net \nC: Skip \n")
+   
+}
+
+function lifelinesUpdate(){
+
+    if (lifelineChoice === "A"){
+        console.log("You have used 50/50 this lifeline is no longer available.")
+        halvesAvailable = false
+    }
+    else if (lifelineChoice === "B"){
+        console.log("You have used safetynet this lifeline is no longer available.")
+        safetynetAvaiable = false
+    }
+    else if (lifelineChoice === "C"){
+        console.log("You have used skip this lifeline is no longer available.")
+        skipavAilable = false
+}}
+
+lifelinesUpdate()
+
+
