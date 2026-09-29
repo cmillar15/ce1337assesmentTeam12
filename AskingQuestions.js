@@ -1,7 +1,7 @@
 let questionIndex = 0; // set the current position of the questions to the first question
 let difficultyIndex = 0; // set the current position of the array to the first array
 
-// example array
+// example array 
 const questions = [
  [
     {question: "What colour is grass?",options:["Green","blue","red","purple"],answer:"A"},
@@ -42,10 +42,12 @@ if (questionIndex >= questions[difficultyIndex].length) {
     // if so , set question position back to the first question in the next array
     questionIndex = 0;
 
-}
+} 
 
 
 }
 // call function
 AskQuestion();
 
+console.log(questionIndex)
+console.log(difficultyIndex)
