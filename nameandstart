@@ -6,8 +6,8 @@ console.log("Welcome to Who Wants to be a Millionaire Team 12 edition. Im Jeremy
 
 let name = prompt.question("To begin, what is your name: ")
 
-prompt.question("Tell us a bit about yourself.")
-console.log("Thats brilliant, " + name + "Im your host Jeremy CLarkson and we will now begin the quiz.")
+prompt.question("Tell us a bit about yourself: ")
+console.log("Thats sounds lovely " + name + ", Im your host Jeremy CLarkson and we will now begin the quiz.")
 
 return name;
 }
