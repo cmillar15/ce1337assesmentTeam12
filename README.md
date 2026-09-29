@@ -17,3 +17,7 @@
 - moneyWon: how much the user wins when the quiz ends
 - moneyAmmounts: Array that shows all the money ammounts
 - answerCorrect: True/False, is set to true when user gets correct answer
+- lifelineChoice: what lifeline they use
+- halvesAvailable: if they have 50/50 lifeline 
+- skipAvailable:if they habe skips avaiable
+- safetynetAvailable: if they have safety net lifeline
