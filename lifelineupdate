@@ -7,14 +7,21 @@ let skipAvailable = true
 
 let lifelineChoice
 
+//This will need to be changed so that the "question" is actually the question asking function
 
 answer = ""
 prompt.question("question?")
+
+//see above.
+
+//"L" being the input required to choose to use a lifeline.
 
 if (answer = "L"){
     lifelineChoice = prompt.question("What lifeline would you like to use: \nA: 50/50 \nB: Safety Net \nC: Skip \n")
    
 }
+
+//Below is to update the available lifelines depending on which the player chooses to use.
 
 function lifelinesUpdate(){
 
