@@ -5,7 +5,7 @@
 - AskQuestion : selects the next question to be asked, when used inside a loop for the question
 - setScore: checks if answerCorrect is True and then adds 1 to score and sets how much money they are on
 - setCheckpoint: sets the safety net when the user reaches £1,000 and again at £32,000
--
+- endGame: displays the personalized end of game message, telling the player how much they have won and ending the game.
 -
 
 ##Variables
