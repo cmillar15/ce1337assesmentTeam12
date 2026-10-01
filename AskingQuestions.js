@@ -1,7 +1,7 @@
 let questionIndex = 0; // set the current position of the questions to the first question
 let difficultyIndex = 0; // set the current position of the array to the first array
 
-// example array
+// example array, NEEDS REMOVED 
 const questions = [
  [
     {question: "What colour is grass?",options:["Green","blue","red","purple"],answer:"A"},
