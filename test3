@@ -1,0 +1,135 @@
+const prompt = require("readline-sync");
+
+
+
+function Nameandstart(){
+
+console.log("Welcome to Who Wants to be a Millionaire Team 12 edition. Im Jeremy Clarkson and Ill be your host for the game.")
+
+let name = prompt.question("To begin, what is your name: ")
+
+prompt.question("Tell us a bit about yourself: ")
+console.log("Thats sounds lovely " + name + ", Im your host Jeremy Clarkson and we will now begin the quiz.")
+
+return name
+}
+
+
+module.exports = {Nameandstart}
+const questions = [
+    [
+{question:"\n What is the main ingredient in guacamole?",options:[" Aniseed", " Apricot", " Avocado", " Apple"], answer:"C"},
+{question:"\n What is the Chemical symbol for Potassium?",options:[" J", " K", " L", " P"], answer:"B"},
+{question:"\n Who invented the telephone?",options:[" Alexander Graham Bell", " Ghengis Khan", " Andrei Teleph", " Howard Hughes"], answer:"A"},
+{question:"\n Which of these is not a primary colour?", options:[" Red", " Blue", " Green", " Yellow"], answer:"C"},
+{question:"\n What is the largest bone in the human body?", options:[" Tibia", " Femur", " Humerus", " Sternum"], answer:"B"}],
+//EASY
+[
+{question:"\n How many sitting US presidents have been assassinated?",options:[" 1", " 2", " 3", " 4"], answer:"D"},
+{question:"\n Who created the comic book character Spawn?",options:[" Stan Lee", " Joe Shuster", " Todd MacFarlane", " Bob Kane"], answer:"C"},
+{question:"\n A group of crows is called a what?",options:[" Coven", " Court", " Murder", " Cackle"], answer:"C"},
+{question:"\n What year did Yuri Gagarin become the first human in space?", options:[" 1959", " 1961", " 1963", " 1965"], answer:"B"},
+{question:"\n In the movie Citizen Kane, what is Rosebud?", options:[" A mistress", " A pet", " A sledge", " A flower"], answer:"C"}],
+
+//MEDIUM
+[
+{question:"\n What was developed at Bletchley Park?",options:["A- Enigma Machine", "B- Windows 95", "C- DARPANET", "D- ChatGPT"], answer:"A"},
+{question:"\n Which of these is not another name for Gandalf?",options:["A- Olorin", "B- Melkor", "C- Tharkun", "D- Mithrandir"], answer:"B"},
+{question:"\n Who won the first World Cup final in 1930?",options:["A- Argentina", "B- Brazil", "C- France", "D- Uruguay"], answer:"D"},
+{question:"\n What is the tallest mountain on Earth, if measured from base to peak?", options:["A- K2", "B- Mauna Kea", "C-Kilimanjaro", "D- Everest"], answer:"B"},
+{question:"\n How many rings does the planet Saturn have?", options:["A- 7", "B- 8", "C- 9", "D- 10"], answer:"A"}]
+];
+//HARD  
+
+let questionIndex = 0;
+let difficultyIndex = 0;
+let answer = "";
+
+
+let score = 0;
+let currentMoney = 0;
+let moneyWon = 0;
+let walkAway = false
+let checkpoint = "£0";
+const moneyAmmounts = ["£0", "£100", "£200", "£300", "£500", "£1,000", "£2,000", "£4,000", "£8,000", "£16,000", "£32,000", "£64,000", "£125,000", "£250,000", "£500,000", "£1 Million"];
+
+//Checks if answerCorrect is true and then adds one to score and displays the users current ammout of money
+function setScore(){
+    if(answer === questions[difficultyIndex][questionIndex].answer){
+        console.log("Congratulations " + name +", That is correct!");
+        score = score + 1;
+        currentMoney = moneyAmmounts[score];
+        console.log("Your prize money is now up to " + currentMoney);
+        
+        function setCheckpoint(){
+            if(currentMoney == "£1,000" || currentMoney == "£32,000"){
+                checkpoint = currentMoney;
+            }
+            else{
+                checkpoint = checkpoint;
+            }
+        }
+        setCheckpoint();
+    }
+
+    else if(walkAway == true){
+        moneyWon = currentMoney;
+        console.log("Youre leaving with " + currentMoney);
+    }
+
+    else{
+       
+        moneyWon == checkpoint;
+        
+    }
+}
+
+
+
+function AskQuestion(){
+let currentObj = questions[difficultyIndex][questionIndex]
+
+
+questionIndex++;
+console.log(currentObj.question + "\n" +
+    "A) "+ currentObj.options[0] + "\n" +
+    "B) "+ currentObj.options[1] + "\n" +
+    "C) "+ currentObj.options[2] + "\n" +
+    "D) "+ currentObj.options[3] + "\n")
+
+if (questionIndex >= questions[difficultyIndex].length) {
+    difficultyIndex++;
+    questionIndex = 0;
+
+}
+return currentObj;
+
+}
+function questionLoop(){
+
+for(let i=0; i<15; i++){
+    
+        let currentObj = AskQuestion();
+        answer = prompt.question("Enter your answer: ");
+        if(questionIndex > 1 && questionIndex <= 5 && answer !== questions[difficultyIndex][questionIndex].answer){
+    console.log(" Unfortunately , that is not the answer we're looking for. \n You are going home with no prize money. \n Im Jeremy Clarkson, and this has been Who Wants to Be a Millionaire, Team 12 edition!")
+    break;
+}else if(questionIndex > 5 && questionIndex <= 10 && answer !== questions[difficultyIndex][questionIndex].answer){
+    console.log(" Unlucky. That is not correct. However, you'll still be leaving here with " + moneyWon + ". \n You've been " + name + ", and ive been Jeremy Clarkson. \n Thanks for playing Who Wants to Be a Millionaire, Team 12 edition!")
+    break;
+}else if (questionIndex > 10 && answer !== questions[difficultyIndex][questionIndex].answer){
+    console.log(" So close. Unfortunately that answer was incorrect. \n However, you still walk away with " + moneyWon + ". \n Ive been Jeremy Clarkson and youve played Who Wants to Be a Millionaire, Team 12 edition!")
+    break;
+}else if (questionIndex == 15 && answer !== questions[difficultyIndex][questionIndex].answer){
+    console.log(" Congratulations!! Youve made it to the end of the questions and answered correctly! Youre a millionaire! \n Ive been your host Jeremy Clarkson, and youve played Who Wants to Be a Milionaire! \n Give it up for " + name + "! \n clap clap clap clap clap")
+    break;
+}
+    
+   
+}
+}
+
+Nameandstart()
+questionLoop()
+setScore()
+
