@@ -1,0 +1,14 @@
+//endGame runs at the end of the quiz, it checks what question the player has made it to, their total accumulated prize money and whethere they made it to and got the million pound question correct. 
+//then displays a persdonalised player exit message telling the player these stats. 
+function endGame(){
+//if else for checking question, answer correctness and then displaying the message to the terminal. 
+if(questionIndex > 1 && questionIndex <= 5 && answerCorrect == false){
+    console.log(" Unfortunately " + name + ", that is not the answer we're looking for. \n You are going home with no prize money. \n Im Jeremy Clarkson, and this has been Who Wants to Be a Millionaire, Team 12 edition!")
+}else if(questionIndex > 5 && questionIndex <= 10 && answerCorrect == false){
+    console.log(" Unlucky " + name + ". That is not correct. However, you'll still be leaving here with " + moneyWon + ". \n You've been " + name + ", and ive been Jeremy Clarkson. \n Thanks for playing Who Wants to Be a Millionaire, Team 12 edition!")
+}else if (questionIndex > 10 && answerCorrect == false){
+    console.log(" So close " + name + ". Unfortunately that answer was incorrect. \n However, you still walk away with " + moneyWon + ". \n Ive been Jeremy Clarkson and youve played Who Wants to Be a Millionaire, Team 12 edition!")
+}else if (questionIndex == 15 && answerCorrect == true){
+    console.log(" Congratulations " + name + "!! Youve made it to the end of the questions and answered correctly! Youre a millionaire! \n Ive been your host Jeremy Clarkson, and youve played Who Wants to Be a Milionaire! \n Give it up for " + name + "! \n clap clap clap clap clap")
+}}
+endGame()
