@@ -2,28 +2,6 @@
 
 const prompt = require("readline-sync");
 
-// //___Code to help test - DELETE AFTER____
-// let name = prompt.question("What is your name?: ")
-// let answer = prompt.question("What is the first word in this sentence?: ");
-// let answerCorrect = false;
-// let walkAway = false;
-// if(answer === "What"){
-//     answerCorrect=true;
-// }
-// else if(answer == "Walk away"){
-//     walkAway = true;
-// }
-
-// else{
-//    answerCorrect=false;
-// }
-
-//let name = "katie"
-//let answerCorrect = false
-
-// //____Code to help test - DELETE AFTER____
-
-
 //declare variables and array
 let score = 0;
 let currentMoney = 0;
