@@ -1,6 +1,6 @@
 const prompt = require("readline-sync")
 
-function Nameandstart(){
+function nameAndStart(){
 
 //This will run at the start of the quiz and will prompt and store the name
 
@@ -14,5 +14,5 @@ console.log("Thats sounds lovely " + name + ", Im your host Jeremy CLarkson and 
 return name;
 }
 
-Nameandstart()
-module.exports = {Nameandstart}
+nameAndStart()
+module.exports = {nameAndStart}
