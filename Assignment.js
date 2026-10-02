@@ -57,6 +57,12 @@ for(let i = 0; i < 15 ; i++){
         lifelineChoice = prompt.question("What lifeline would you like to use: \nA: 50/50 \nB: Safety Net \nC: Skip \n")
         lifelinesUpdate(lifelineChoice);
         i--;
+        
+    else if(answer = "W"){
+        moneyWon = currentMoney;
+        console.log("Youre leaving with " + currentMoney);
+        break;
+    }
         continue; // restarts the question
     } else if(answer === correctAnswer){
         
@@ -209,7 +215,7 @@ function setScore(){
         setCheckpoint();
     }
 
-    else if(answer = "w"){
+    else if(answer = "W"){
         moneyWon = currentMoney;
         console.log("Youre leaving with " + currentMoney);
     }
