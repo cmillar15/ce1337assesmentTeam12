@@ -1,4 +1,7 @@
 const prompt = require("readline-sync");
+let answerCorrect = "";
+let lifelineChoice = "";
+let name = "";
 let questionIndex = 0;
 let difficultyIndex = 0;
 let score = 0;
@@ -33,21 +36,53 @@ const questions = [
     ];
 //HARD  
 
-Nameandstart()
-for(let i = 0;i<15;i++){
-    AskQuestion()
-    let answer = prompt.question("Enter your answer: ");
-    if (answer === "L"){
-        let lifelineChoice = prompt.question("What lifeline would you like to use: \nA: 50/50 \nB: Safety Net \nC: Skip \n")
-        lifelinesUpdate()
-    } else if(answer === questions[questionIndex][difficultyIndex].answer)
-    {
-        score += 1;
-        console.log(score);
-    } else{
-        endGame()
-    }}
 
+
+
+
+//==========MAIN LOOP =============
+
+
+
+
+
+
+
+
+Nameandstart()
+for(let i = 0; i < 15 ; i++){
+    AskQuestion();
+    let answer = prompt.question("Enter your answer: ").toUpperCase();
+    let correctAnswer = questions[difficultyIndex][questionIndex].answer;
+    if (answer === "L"){
+        lifelineChoice = prompt.question("What lifeline would you like to use: \nA: 50/50 \nB: Safety Net \nC: Skip \n")
+        lifelinesUpdate(lifelineChoice);
+        i--;
+        continue; // restarts the question
+    } else if(answer === correctAnswer){
+        
+        score += 1;
+        currentMoney = moneyAmmounts[score];
+        console.log("Congratulations! That is correct! Your prize money is now up to " + currentMoney);
+        console.log(score);
+        questionIndex++;
+
+        //check if cycle loop should move onto the next difficulty array
+    if (questionIndex >= questions[difficultyIndex].length) {
+    difficultyIndex++;
+    console.log("Questions Increase Difficulty")
+    // if so , set question position back to the first question in the next array
+    questionIndex = 0;
+
+
+        } 
+    } else if ( answer !== correctAnswer){
+        answerCorrect = false;
+        endGame();
+        break;
+    }
+}
+    
 
 
 
@@ -70,17 +105,18 @@ for(let i = 0;i<15;i++){
 
     // initilize function
 function FiftyFifty(){
+    let currentObj = questions[difficultyIndex][questionIndex];
 //Set the options into their respectful numbers
-const optionsToIndex = {1: questions[questionIndex][difficultyIndex].options[0],
-     2: questions[questionIndex][difficultyIndex].options[1],
-     3: questions[questionIndex][difficultyIndex].options[2],
-     4: questions[questionIndex][difficultyIndex].options[3]}
+const optionsToIndex = {1: questions[difficultyIndex][questionIndex].options[0],
+     2: questions[difficultyIndex][questionIndex].options[1],
+     3: questions[difficultyIndex][questionIndex].options[2],
+     4: questions[difficultyIndex][questionIndex].options[3]}
 //turn the answer into a variable from the question
-let correctIndex = questions[questionIndex][difficultyIndex].answer
+let correctIndex = questions[difficultyIndex][questionIndex].answer
 //create an array to be filled with wrong options
 let incorrectIndex = []
 // fill IncorrectIndex with the wrong options via loop
-for (let i;i<4;i++){
+for (let i =0;i<4;i++){
     if( i !== correctIndex){
         //add incorrect options to array
         incorrectIndex.push(i)
@@ -94,7 +130,7 @@ let indexKeep = incorrectIndex[randomNumber]
 //loop through the remaining questions and replace them with text leaving only 2
 for( let i =0;i<4;i++){
     if (i !== correctIndex && i !== indexKeep) {
-        questions[questionIndex][difficultyIndex].options[i] = "=REMOVED="
+        questions[difficultyIndex][questionIndex].options[i] = "=REMOVED="
     }
 }
 console.log("Question "+ questionIndex + 1 + ": " + currentObj.question + "\n" +
@@ -110,7 +146,7 @@ function AskQuestion(){
 //define the current object
 let currentObj = questions[difficultyIndex][questionIndex];
 // set questionIndex to the next question for next function loop cycle
-questionIndex++;
+
 //display the question and its respectfull options
 console.log("Question "+ questionIndex + 1 + ": " + currentObj.question + "\n" +
     "A) "+ currentObj.options[0] + "\n" +
@@ -118,18 +154,13 @@ console.log("Question "+ questionIndex + 1 + ": " + currentObj.question + "\n" +
     "C) "+ currentObj.options[2] + "\n" +
     "D) "+ currentObj.options[3] + "\n");
 
-//check if cycle loop should move onto the next difficulty array
-if (questionIndex >= questions[difficultyIndex].length) {
-    difficultyIndex++;
-    console.log("Questions Increase Difficulty")
-    // if so , set question position back to the first question in the next array
-    questionIndex = 0;
 
 
-} 
 return questions
+} 
 
-}
+
+
 
 //Below is to update the available lifelines depending on which the player chooses to use.
 function lifelinesUpdate(){
@@ -152,7 +183,7 @@ function Nameandstart(){
 const prompt = require("readline-sync")
 console.log("Welcome to Who Wants to be a Millionaire Team 12 edition. Im Jeremy Clarkson and Ill be your host for the game.")
 
-let name = prompt.question("To begin, what is your name: ")
+name = prompt.question("To begin, what is your name: ")
 
 prompt.question("Tell us a bit about yourself: ")
 console.log("Thats sounds lovely " + name + ", Im your host Jeremy CLarkson and we will now begin the quiz.")
@@ -189,4 +220,19 @@ function setScore(){
         moneyWon == checkpoint;
         console.log("But youre leaving the show with " + checkpoint);
     }
+}
+
+//endGame runs at the end of the quiz, it checks what question the player has made it to, their total accumulated prize money and whethere they made it to and got the million pound question correct. 
+//then displays a persdonalised player exit message telling the player these stats. 
+function endGame(){
+//if else for checking question, answer correctness and then displaying the message to the terminal. 
+if(score > 1 && score <= 5 && answerCorrect == false){
+    console.log(" Unfortunately " + name + ", that is not the answer we're looking for. \n You are going home with no prize money. \n Im Jeremy Clarkson, and this has been Who Wants to Be a Millionaire, Team 12 edition!")
+}else if(score > 5 && score <= 10 && answerCorrect == false){
+    console.log(" Unlucky " + name + ". That is not correct. However, you'll still be leaving here with " + moneyWon + ". \n You've been " + name + ", and ive been Jeremy Clarkson. \n Thanks for playing Who Wants to Be a Millionaire, Team 12 edition!")
+}else if (score > 10 && answerCorrect == false){
+    console.log(" So close " + name + ". Unfortunately that answer was incorrect. \n However, you still walk away with " + moneyWon + ". \n Ive been Jeremy Clarkson and youve played Who Wants to Be a Millionaire, Team 12 edition!")
+}else if (score == 15 && answerCorrect == true){
+    console.log(" Congratulations " + name + "!! Youve made it to the end of the questions and answered correctly! Youre a millionaire! \n Ive been your host Jeremy Clarkson, and youve played Who Wants to Be a Milionaire! \n Give it up for " + name + "! \n clap clap clap clap clap")
+}
 }
