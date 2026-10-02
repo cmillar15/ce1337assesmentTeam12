@@ -62,6 +62,9 @@ for(let i = 0; i < 15 ; i++){
         lifelinesUpdate(lifelineChoice);
         i--;
         continue; // restarts the question
+    }else if (answer === "H"){
+    console.log("\nHelp Screen\nL: Lifelines = Choose from 50/50, skip and safety net.\nW: Walk Away = Leave with current winnnings and end the quiz.\n")
+ 
     } else if(answer === correctAnswer){
         
         setScore();
