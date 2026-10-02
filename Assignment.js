@@ -57,12 +57,12 @@ for(let i = 0; i < 15 ; i++){
         lifelineChoice = prompt.question("What lifeline would you like to use: \nA: 50/50 \nB: Safety Net \nC: Skip \n")
         lifelinesUpdate(lifelineChoice);
         i--;
-        
-    else if(answer = "W"){
-        moneyWon = currentMoney;
-        console.log("Youre leaving with " + currentMoney);
-        break;
-    }
+        if(answer = "W"){
+            moneyWon = currentMoney;
+            console.log("Youre leaving with " + currentMoney);
+            break;
+        }
+       
         continue; // restarts the question
     } else if(answer === correctAnswer){
         
@@ -176,7 +176,9 @@ function lifelinesUpdate(){
         halvesAvailable = false
     }
     else if (lifelineChoice === "B"){
+        checkpoint = currentMoney;
         console.log("You have used safetynet this lifeline is no longer available.")
+        AskQuestion()
         safetynetAvaiable = false
     }
     else if (lifelineChoice === "C"){
@@ -191,7 +193,7 @@ console.log("Welcome to Who Wants to be a Millionaire Team 12 edition. Im Jeremy
 name = prompt.question("To begin, what is your name: ")
 
 prompt.question("Tell us a bit about yourself: ")
-console.log("Thats sounds lovely " + name + ", Im your host Jeremy CLarkson and we will now begin the quiz.")
+console.log("Thats sounds lovely " + name + ", Im your host Jeremy CLarkson and we will now begin the quiz.\n")
 
 return name;
 }
@@ -208,16 +210,8 @@ function setScore(){
             if(currentMoney == "£1,000" || currentMoney == "£32,000"){
                 checkpoint = currentMoney;
             }
-            else{
-                checkpoint = checkpoint;
-            }
         }
         setCheckpoint();
-    }
-
-    else if(answer = "W"){
-        moneyWon = currentMoney;
-        console.log("Youre leaving with " + currentMoney);
     }
 
     else{
