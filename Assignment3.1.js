@@ -10,7 +10,6 @@ let difficultyIndex = 0;
 let score = 0;
 let currentMoney = 0;
 let moneyWon = 0;
-let walkAway = false
 let checkpoint = "£0";
 const moneyAmmounts = ["£0", "£100", "£200", "£300", "£500", "£1,000", "£2,000", "£4,000", "£8,000", "£16,000", "£32,000", "£64,000", "£125,000", "£250,000", "£500,000", "£1 Million"];
 
@@ -58,12 +57,14 @@ for(let i = 0; i < 15 ; i++){
     let answer = prompt.question("Enter your answer: ").toUpperCase();
     let correctAnswer = questions[difficultyIndex][questionIndex].answer;
     if (answer === "L"){
-        lifelineChoice = prompt.question("What lifeline would you like to use: \nA: 50/50 \nB: Safety Net \nC: Skip \n").toUpperCase();
+        lifelineChoice = prompt.question("What lifeline would you like to use: \nA: 50/50 \nB: Walk Away \nC: Skip \n").toUpperCase();
         lifelinesUpdate(lifelineChoice);
         i--;
         continue; // restarts the question
-    }else if (answer === "H"){
-    console.log("\nHelp Screen\nL: Lifelines = Choose from 50/50, skip and safety net.\nW: Walk Away = Leave with current winnnings and end the quiz.\n")
+    }
+
+        else if (answer === "H"){
+            console.log("\nHelp Screen\nL: Lifelines = Choose from 50/50, skip and Walk Away.\n Walk Away = Leave with current winnnings and end the quiz.\n")
  
     } else if(answer === correctAnswer){
         
@@ -185,9 +186,8 @@ function lifelinesUpdate(){
         // console.log("You have used 50/50 this lifeline is no longer available.")
         halvesAvailable = false
     }
-    else if (lifelineChoice === "B"){
-        // console.log("You have used safetynet this lifeline is no longer available.")
-        safetyNetAvailable = false
+    else if(lifelineChoice === "B"){
+           walkAway();
     }
     else if (lifelineChoice === "C"){
         // console.log("You have used skip this lifeline is no longer available.")
@@ -215,7 +215,7 @@ return name;
 
 //Checks if answerCorrect is true and then adds one to score and displays the users current ammout of money
 function setScore(){
-    
+   
         console.log("Congratulations " + name +", That is correct!");
         score += 1;
         currentMoney = moneyAmmounts[score];
@@ -237,11 +237,10 @@ function setScore(){
     //     console.log("Youre leaving with " + currentMoney);
     // }
 
-    // else{
-    //     console.log("Im sorry " + name + ", that is incorrect.");
-    //     moneyWon == checkpoint;
-    //     console.log("But youre leaving the show with " + checkpoint);
-    // }
+    //if(answer !== correctAnswer){
+       // moneyWon == checkpoint;
+        //console.log("But youre leaving the show with " + checkpoint);
+    //}
 
 
 //endGame runs at the end of the quiz, it checks what question the player has made it to, their total accumulated prize money and whethere they made it to and got the million pound question correct. 
@@ -256,5 +255,13 @@ function endGame(){
         console.log(" So close " + name + ". Unfortunately that answer was incorrect. \n However, you still walk away with " + moneyWon + ". \n I've been Jeremy Clarkson and youve played Who Wants to Be a Millionaire, Team 12 edition!")
     }else if (score == 15 && correctAnswer == true){
         console.log(" Congratulations " + name + "!! You've made it to the end of the questions and answered correctly! Youre a millionaire! \n I've been your host Jeremy Clarkson, and youve played Who Wants to Be a Milionaire! \n Give it up for " + name + "! \n clap clap clap clap clap")
+    }else if (lifelineChoice === "B"){
+        walkAway();
     }
+}
+
+function walkAway(){
+    moneyWon = currentMoney;
+    console.log("Youre leaving with " + currentMoney);
+    endGame();
 }
